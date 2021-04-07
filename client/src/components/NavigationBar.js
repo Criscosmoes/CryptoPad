@@ -52,15 +52,15 @@ h2 {
     align-items: center; 
     flex-direction: column;
     height: 300px; 
-    width: 100%
+    width: 100%; 
+    margin-top: 15%
 }
 
 .navigation > * {
     display: flex; 
     width: 100%;
     height: 70px; 
-    font-size: 3rem;
-    margin-top: 5%
+    font-size: 2.8rem;
 }
 
 .link {
