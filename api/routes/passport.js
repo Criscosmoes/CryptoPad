@@ -3,7 +3,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy; 
 
 //user model
-const User = require("../models/users");
+const User = require("../schemas/user");
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -56,7 +56,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google"), (req, res) => {
 
-    res.redirect("/")
+    res.redirect("/dashboard")
   }
 ); // this now uses the google strategy call back URL up above
 
@@ -64,6 +64,11 @@ router.get("/api/logout", (req, res) => {
   req.logout();
   res.redirect("/")
 });
+
+
+
+
+
 
 router.get("/api/current_user", (req, res) => {
   res.send(req.user);

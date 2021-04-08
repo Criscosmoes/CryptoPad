@@ -16,8 +16,20 @@ const server = express();
 // routes 
 
 const UserRouter = require("./routes/user"); 
+const PassportRouter = require("./routes/passport"); 
 
 
+//middleware
+server.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days before it expires
+        keys: [process.env.COOKIE_KEY]
+    })
+)
+
+
+server.use(passport.initialize()); 
+server.use(passport.session());
 server.use(cors()); 
 server.use(helmet());  
 server.use(express.json()); 
@@ -27,6 +39,8 @@ server.use(express.json());
 // user routes
 server.use("/api", UserRouter); 
 
+
+server.use(PassportRouter);
 
 
 
