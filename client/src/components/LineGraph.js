@@ -5,13 +5,19 @@ import { Line } from "react-chartjs-2";
 const StyledLineGraph = styled.div`
   & {
     height: 400px;
+    border: 2px solid black; 
   }
+
+
+
+
+
 `;
 
 const LineGraph = () => {
   return (
     <StyledLineGraph>
-      <Line
+      <Line className="graph"
         data={{
           labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
           datasets: [
@@ -34,12 +40,26 @@ const LineGraph = () => {
                 "rgba(153, 102, 255, 1)",
                 "rgba(255, 159, 64, 1)",
               ],
-              borderWidth: 1,
+              borderWidth: 2,
             },
           ],
         }}
-        width="300px"
         height="110px"
+        options={{
+            maintainAspectRatio: false, 
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true, 
+                }
+              }]
+            },
+            legend: {
+              labels: {
+                defaultFontFamily: "'Cairo', sans-serif"
+              }
+            }
+        }}
       />
     </StyledLineGraph>
   );

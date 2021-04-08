@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import styled from "styled-components"; 
 
 
 import NavigationBar from './NavigationBar';
 import LineGraph from './LineGraph';
+import { connect } from 'react-redux';
+import { fetchCrypto } from './../actions/index';
+
+
 
 const StyledDashboard = styled.div`
 
@@ -18,7 +22,7 @@ const StyledDashboard = styled.div`
 
 .middle--section {
     display: flex; 
-    justify-content: space-evenly; 
+    justify-content: space-around; 
     align-items: center; 
     flex-direction: column; 
     margin-top: 2%;
@@ -70,11 +74,20 @@ h4 {
     width: 33%;
 }
 
-
-
 `
 
-const Dashboard = () => {
+const Dashboard = ({fetchCrypto}) => {
+
+
+
+    useEffect(() => {
+
+        fetchCrypto(); 
+
+
+    }, [])
+
+
     return (
         <StyledDashboard>
             <NavigationBar />
@@ -105,4 +118,14 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+
+
+const mapStateToProps = state => {
+
+
+    return {
+         
+    }
+}
+
+export default connect(mapStateToProps, { fetchCrypto })(Dashboard)
