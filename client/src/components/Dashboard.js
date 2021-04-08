@@ -84,7 +84,6 @@ const Dashboard = ({fetchCrypto}) => {
 
         fetchCrypto(); 
 
-
     }, [])
 
 
