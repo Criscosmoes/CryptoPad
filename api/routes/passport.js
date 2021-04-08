@@ -65,6 +65,11 @@ router.get("/api/logout", (req, res) => {
   res.redirect("/")
 });
 
+
+
+
+
+
 router.get("/api/current_user", (req, res) => {
   res.send(req.user);
 });

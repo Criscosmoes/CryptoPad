@@ -82,7 +82,8 @@ const Dashboard = ({fetchCrypto}) => {
 
     useEffect(() => {
 
-        fetchCrypto(); 
+        fetchCrypto("Qwsogvtv82FCd", "btc"); //bitcoin for the past 7 days
+    
 
     }, [])
 
