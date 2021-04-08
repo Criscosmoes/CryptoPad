@@ -2,6 +2,12 @@ const initialState = {
     currentUser: {
         id: "", 
         username: ""
+    }, 
+    coins: {
+        btc: [], 
+        ltc: [], 
+        eth: [], 
+        search: [], 
     }
 }
 
