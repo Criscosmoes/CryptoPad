@@ -9,7 +9,7 @@ import TickerBox from "./TickerBox";
 
 const StyledHeaderContainer = styled.header`
     background-color: #654321;
-    /* min-height: 8vh; */
+    min-height: 8vh;
 `
 
 export const Header = (props) => {

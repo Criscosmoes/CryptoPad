@@ -5,8 +5,10 @@ import { AiOutlineArrowUp } from "react-icons/ai"
 
 const StyledTickerContainer = styled.div`
     display: flex;
+    align-items: baseline;
     font-size: 2rem;
     padding-top: 3rem;
+    padding-left: 5rem;
     min-height: 8vh;
     background-color: #000000;
     color: #a3eada;

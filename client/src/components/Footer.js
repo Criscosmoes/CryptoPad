@@ -6,14 +6,20 @@ import styled from 'styled-components';
 
 
 const StyledFooterContainer = styled.footer`
-    background-color: #123456;
-    min-height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #000000;
+    color: grey;
+    min-height: 7vh;
+    font-size: 1rem;
+    padding-right: 2rem;
 `
 
 export const Footer = (props) => {
     return (
         <StyledFooterContainer>
-            <p>Footer</p>
+            <p><a href="https://www.linkedin.com/in/cristian-fernandez-4357091a9/" rel="noreferrer" target="_blank">Cris</a> & <a href="https://linkedin.com/in/mrerickgonzalez/" rel="noreferrer" target="_blank">Erick</a> teamed up on this project <span>🙌</span></p>
         </StyledFooterContainer>
     )
 }
