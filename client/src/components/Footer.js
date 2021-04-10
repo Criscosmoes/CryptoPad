@@ -19,7 +19,7 @@ const StyledFooterContainer = styled.footer`
 export const Footer = (props) => {
     return (
         <StyledFooterContainer>
-            <p><a href="https://www.linkedin.com/in/cristian-fernandez-4357091a9/" rel="noreferrer" target="_blank">Cris</a> & <a href="https://linkedin.com/in/mrerickgonzalez/" rel="noreferrer" target="_blank">Erick</a> teamed up on this project <span>🙌</span></p>
+            <p><a href="https://github.com/Criscosmoes" rel="noreferrer" target="_blank">Cris</a> & <a href="https://github.com/eg180" rel="noreferrer" target="_blank">Erick</a> teamed up on this project <span>🙌</span></p>
         </StyledFooterContainer>
     )
 }

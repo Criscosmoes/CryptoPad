@@ -34,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    background-color: #a3eada;
 }
 ol, ul {
     list-style: none;
@@ -56,6 +57,7 @@ img {
 a {
     text-decoration: none;
     color: rgb( 27, 24, 24);
+    color: #a3eada;
 }
 * {
     box-sizing: border-box;

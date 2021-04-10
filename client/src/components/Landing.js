@@ -4,6 +4,8 @@ import { AiOutlineLineChart } from "react-icons/ai";
 import { FcLineChart } from "react-icons/fc";
 import { ImNewspaper } from "react-icons/im";
 import styled from 'styled-components';
+import Carousel from "react-elastic-carousel";
+import Item from "../Item";
 
 import Header from './Header';
 import Footer from './Footer';
@@ -13,12 +15,17 @@ const StyledLandingContainer = styled.div`
     font-family: 'Reem Kufi', sans-serif;
     background-color: #000000;
     color: white;
-    min-height: 85vh;
+    min-height: 80vh;
     main {
+        display: flex;
+        flex-direction: column;
         #logo {
             font-size: 8rem;
             color: #a3eada;
         } 
+        .carousel {
+            padding-top: 2rem;
+        }
         /* border: none; */
         border-top: 1px solid;
         border-bottom: none;
@@ -26,7 +33,7 @@ const StyledLandingContainer = styled.div`
         border-right: none;
         border-top-color: #ffffff;
 
-        padding-top: 15rem;
+        padding-top: 7rem;
         padding-left: 5rem;
         #main-text {
             font-size: 3.5rem;
@@ -43,7 +50,7 @@ const StyledLandingContainer = styled.div`
         margin-right: 40rem;
         display: flex;
         justify-content: space-around;
-        padding-top: 35rem;
+        padding-top: 16.75rem;
         div {
             display: flex;
             flex-direction: column;
@@ -62,6 +69,13 @@ const StyledLandingContainer = styled.div`
     }
 `
 
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
+
 export const Landing = (props) => {
     return (
         <>
@@ -77,6 +91,16 @@ export const Landing = (props) => {
                     <div id="main-sub-text">
                         <p>Your one-stop-shop for following the latest news around the web on your favorite crypto-currencies</p>
                     </div>
+                    <Carousel className="carousel" breakPoints={breakPoints}>
+                        <Item>One</Item>
+                        <Item>Two</Item>
+                        <Item>Three</Item>
+                        <Item>Four</Item>
+                        <Item>Five</Item>
+                        <Item>Six</Item>
+                        <Item>Seven</Item>
+                        <Item>Eight</Item>
+                    </Carousel>
                 </main>
                 <section id="features">
                     <div>

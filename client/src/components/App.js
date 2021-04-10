@@ -10,7 +10,7 @@ import Landing from './Landing';
 const App = () => {
     return (
         <Switch>
-            <Route path="/" component={Landing} />
+            <Route exact path="/" component={Landing} />
             <Route path="/dashboard">
                 <Dashboard />
             </Route>
