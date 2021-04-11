@@ -15,7 +15,6 @@ const StyledDashboard = styled.div`
 
 & {
     display: flex;
-    height: 100vh; 
     background: #F4F7F9; 
     font-family: 'Cairo', sans-serif;
 }
@@ -76,16 +75,8 @@ h4 {
 
 `
 
-const Dashboard = ({fetchCrypto}) => {
+const Dashboard = ({fetchCrypto, btc}) => {
 
-
-
-    useEffect(() => {
-
-        fetchCrypto("Qwsogvtv82FCd", "btc"); //bitcoin for the past 7 days
-    
-
-    }, [])
 
 
     return (
@@ -95,21 +86,11 @@ const Dashboard = ({fetchCrypto}) => {
                 <div className="intro--data">
                     <h1>Welcome Back, Cristian</h1>
                     <div className="crypto--price">
-                        <div>
-                            <h3 className="crypto--title">Bitcoin</h3>
-                            <h4>56,044.90 USD</h4>
-                        </div>
-                        <div>
-                            <h3 className="crypto--title">Litecoin</h3>
-                            <h4>218.89 USD</h4>
-                        </div>
-                        <div>
-                            <h3 className="crypto--title">Ethereum</h3>
-                            <h4>1,980.26 USD</h4>
-                        </div>
                     </div>
                 </div>
-                <LineGraph />
+                <LineGraph nameOfCoin="bitcoin" coinId={"Qwsogvtv82FCd"} />
+                <LineGraph nameOfCoin="ethereum" coinId={"razxDUgYGNAdQ"} />
+                <LineGraph nameOfCoin="litecoin" coinId={"D7B1x_ks7WhV5"} />
             </section>
             <section className="right--section">
 
@@ -124,7 +105,7 @@ const mapStateToProps = state => {
 
 
     return {
-         
+        btc: state.coins.btc, 
     }
 }
 
