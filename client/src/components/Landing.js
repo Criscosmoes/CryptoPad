@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { AiOutlineLineChart } from "react-icons/ai";
 import { FcLineChart } from "react-icons/fc";
 import { ImNewspaper } from "react-icons/im";
 import styled from 'styled-components';
 import Carousel from "react-elastic-carousel";
-import Item from "../Item";
+import { Grid } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
+import Item from "../Item";
 import Header from './Header';
 import Footer from './Footer';
+import Article from './Article';
 
 const StyledLandingContainer = styled.div`
+        .grid-container {
+            margin-left: 3rem;
+            .prog-div {
+                
+                #progress > * {
+                    border: none;
+                }
+            }
+        }
+    #news {
+        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        /* background-color: grey; */
+    }
+    #progress {
+        border: none;
+    }
     border-color: red;
     font-family: 'Reem Kufi', sans-serif;
     background-color: #000000;
@@ -46,8 +72,8 @@ const StyledLandingContainer = styled.div`
         }
     }
     section {       
-        margin-left: 40rem;
-        margin-right: 40rem;
+        margin-left: 15rem;
+        margin-right: 15rem;
         display: flex;
         justify-content: space-around;
         padding-top: 16.75rem;
@@ -76,7 +102,55 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 },
 ];
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    border: 0,
+    display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2)
+    }
+  }
+}))
+
 export const Landing = (props) => {
+    const [articles, setArticles] = useState([]);
+    const classes = useStyles()
+
+
+    useEffect(() => {
+
+
+    var options = {
+        method: 'GET',
+        url: 'https://bing-news-search1.p.rapidapi.com/news/search',
+        params: {
+            q: 'bitcoin, ethereum, litecoin, aave, dogecoin, cardano, xrp, decentreland',
+            count: '20',
+            setLang: 'EN',
+            cc: 'us',
+            mkt: 'en-US',
+            freshness: 'Week',
+            originalImg: 'true',
+            safeSearch: 'Off'
+    },
+        headers: {
+            'x-bingapis-sdk': 'true',
+            'x-rapidapi-key': '7779971c15mshc50eca24e4f9a8fp14c0cejsnfbadf31577a4',
+            'x-rapidapi-host': 'bing-news-search1.p.rapidapi.com'
+        }
+    };
+
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+        setArticles(response.data.value)
+    }).catch(function (error) {
+        console.error(error);
+    });
+
+    }, [])
+
+  
+
     return (
         <>
             <Header />
@@ -101,7 +175,23 @@ export const Landing = (props) => {
                         <Item>Seven</Item>
                         <Item>Eight</Item>
                     </Carousel>
-                </main>
+                </main>              
+                <Grid container spacing={1} className="grid-container">
+                    {articles.length > 0
+                    ?
+                    articles.map((article) => (
+                        <Grid item xs={6} md={3}>
+                            <Article key={article.datePublished} {...article} />
+                        </Grid>
+                    ))
+                    : 
+                    <Grid >
+                        <div className="prog-div">
+                            <CircularProgress color="secondary" id="progress"/>           
+                        </div>
+                    </Grid>
+                    }
+                </Grid>
                 <section id="features">
                     <div>
                         <p>Get Info</p>

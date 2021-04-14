@@ -10,7 +10,7 @@ const StyledFooterContainer = styled.footer`
     justify-content: flex-end;
     align-items: center;
     background-color: #000000;
-    color: grey;
+    color: #edf6f9;
     min-height: 7vh;
     font-size: 1rem;
     padding-right: 2rem;
