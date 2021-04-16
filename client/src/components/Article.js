@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -38,6 +39,10 @@ const StyledArticleContainer = styled.div`
         }
         #heart {
             border: none;
+            color: red;            
+        }
+        #heart-outline {
+            border: none;
             color: red;
         }
     }
@@ -63,11 +68,15 @@ const useStyles = makeStyles({
 });
 
 export const Article = ({ datePublished, name, provider, url, category }) => {
-
+    const [faveAdded, setFaveAdded] = useState(false);
 
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
+    const toggleFavorite = () => {
+        console.log('favorite clicked')
+        setFaveAdded(!faveAdded)
+    }
 
     return (
         <StyledArticleContainer>
@@ -89,8 +98,11 @@ export const Article = ({ datePublished, name, provider, url, category }) => {
                 </CardContent>
                 <CardActions className="card-actions">
                     <Button size="small"><a href={url} rel="noreferrer" target="_blank">See Article</a></Button>
-                    <IconButton>
-                        <FavoriteBorderIcon id="heart"/>
+                    <IconButton onClick={toggleFavorite}>
+                        {faveAdded 
+                        ?
+                        <FavoriteIcon id="heart" />
+                        : <FavoriteBorderIcon  id="heart-outline"/>}
                     </IconButton>
                     
                 </CardActions>
