@@ -18,7 +18,7 @@ import Article from './Article';
 
 const StyledLandingContainer = styled.div`
         .grid-container {
-            margin-left: 3rem;
+            /* padding-left: 3rem; */
             .prog-div {
                 
                 #progress > * {
@@ -76,7 +76,7 @@ const StyledLandingContainer = styled.div`
         margin-right: 15rem;
         display: flex;
         justify-content: space-around;
-        padding-top: 16.75rem;
+        padding-top: 5rem;
         div {
             display: flex;
             flex-direction: column;
@@ -175,23 +175,7 @@ export const Landing = (props) => {
                         <Item>Seven</Item>
                         <Item>Eight</Item>
                     </Carousel>
-                </main>              
-                <Grid container spacing={1} className="grid-container">
-                    {articles.length > 0
-                    ?
-                    articles.map((article) => (
-                        <Grid item xs={6} md={3}>
-                            <Article key={article.datePublished} {...article} />
-                        </Grid>
-                    ))
-                    : 
-                    <Grid >
-                        <div className="prog-div">
-                            <CircularProgress color="secondary" id="progress"/>           
-                        </div>
-                    </Grid>
-                    }
-                </Grid>
+                </main>
                 <section id="features">
                     <div>
                         <p>Get Info</p>
@@ -210,7 +194,24 @@ export const Landing = (props) => {
                     </div>                    
 
                     
-                </section>
+                </section>        
+                <Grid container spacing={1} className="grid-container">
+                    {articles.length > 0
+                    ?
+                    articles.map((article) => (
+                        <Grid item xs={6} md={3}>
+                            <Article key={article.datePublished} {...article} />
+                        </Grid>
+                    ))
+                    : 
+                    <Grid >
+                        <div className="prog-div">
+                            <CircularProgress color="secondary" id="progress"/>           
+                        </div>
+                    </Grid>
+                    }
+                </Grid>
+
                 
             </StyledLandingContainer>
             <Footer />
