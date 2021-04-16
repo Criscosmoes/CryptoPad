@@ -1,58 +1,132 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Line } from "react-chartjs-2";
+import axios from "axios"; 
 
 const StyledLineGraph = styled.div`
   & {
-    height: 400px;
-    border: 2px solid black; 
+    border: 2px solid black;
+    margin: 3%
   }
 
-
+  h2 {
+    font-size: 4rem; 
+  }
 
 
 
 `;
 
-const LineGraph = () => {
+const LineGraph = ({nameOfCoin, coinId}) => {
+
+  const [priceList, setPriceList] = useState([]);
+  const [timeList, setTimeList] = useState([]); 
+  const [max, setMax] = useState(0); 
+  const [min, setMin] = useState(0); 
+
+  // func to make our returned prices into actual readable prices
+  function numberWithCommas(x) {
+  
+    let y = parseInt(x); 
+  
+    return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  // func to turn timestamp to dates
+  function timeConverter(UNIX_timestamp){
+    let a = new Date(UNIX_timestamp * 1000);
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let year = a.getFullYear();
+    let month = months[a.getMonth()];
+    let date = a.getDate();
+    let hour = a.getHours();
+    let min = a.getMinutes();
+    let sec = a.getSeconds();
+    let time = month + " " + date
+    return time;
+  }
+  
+
+  useEffect(async () => {
+
+    // make axios call
+    const response = await axios.post("/api/send", {id: coinId})
+
+
+    // filter data out
+    const filteredDays = []; 
+
+    for (let i = 0; i < response.data.data.history.length; i+=5){
+        filteredDays.push(response.data.data.history[i])
+    }
+
+    const prices = filteredDays.map(cur => parseInt(cur.price))
+
+    let duplicate = timeConverter(filteredDays[0].timestamp); 
+    let tempDuplicate = duplicate; 
+    console.log(duplicate)
+
+    const times = filteredDays.map(cur => {
+
+      const date = timeConverter(cur.timestamp); 
+      // get rid of duplicate dates
+      if (date === duplicate){
+
+        return ""; 
+      }
+      else {
+        duplicate = date; 
+        return date; 
+      }
+
+    })
+
+    times.splice(-1,1)
+
+    setPriceList(prices); 
+    setTimeList([tempDuplicate, ...times]);
+    console.log(prices.length, times.length)
+    setMax(Math.max(...priceList)); 
+    setMin(Math.min(...priceList)); 
+    
+
+  }, [])
+
+
   return (
     <StyledLineGraph>
-      <Line className="graph"
+      <h2 className="coin--name">{nameOfCoin} 56,431,00</h2>
+      <Line 
         data={{
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: timeList,
           datasets: [
             {
-              label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-              ],
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-              ],
-              borderWidth: 2,
+              borderColor: "#F6AA2C",
+              spanGaps: true,
+              lineTension: 0,
+              fill: true,
+              backgroundColor: "transparent", 
+              borderColor: "black",
+              pointBackgroundColor: "black", 
+              borderJoinStyle: "round",
+              label: `${nameOfCoin} prices`,
+              data: priceList,
             },
           ],
         }}
-        height="110px"
+        height="300px"
         options={{
+            animation: {
+              
+            },
             maintainAspectRatio: false, 
             scales: {
               yAxes: [{
                 ticks: {
-                  beginAtZero: true, 
-                }
-              }]
+                  min: min - 10, 
+                  max: max + 10, 
+                }, 
+              }],  
             },
             legend: {
               labels: {
