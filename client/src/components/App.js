@@ -5,10 +5,12 @@ import "../App.css";
 
 
 import Dashboard from './Dashboard';
+import Landing from './Landing';
 
 const App = () => {
     return (
         <Switch>
+            <Route exact path="/" component={Landing} />
             <Route path="/dashboard">
                 <Dashboard />
             </Route>
