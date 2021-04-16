@@ -25,8 +25,11 @@ const StyledArticleContainer = styled.div`
     padding: 3rem;
 
     .card {
-    background-color: #2b2d42;
-    color: white;
+
+        background-color: #74EBD5;
+        background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+
+        color: white;
     }
 
 
@@ -54,16 +57,12 @@ const useStyles = makeStyles({
   root: {
     
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
   title: {
-    fontSize: 14,
+    fontSize: 25,
+    color: "#d8e2dc",
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 3,
   },
 });
 
@@ -71,10 +70,8 @@ export const Article = ({ datePublished, name, provider, url, category }) => {
     const [faveAdded, setFaveAdded] = useState(false);
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     const toggleFavorite = () => {
-        console.log('favorite clicked')
         setFaveAdded(!faveAdded)
     }
 
@@ -82,7 +79,7 @@ export const Article = ({ datePublished, name, provider, url, category }) => {
         <StyledArticleContainer>
             <Card variant="outlined" className="card">
                 <CardContent>
-                    <Typography className={classes.title} style={{color: "#ffc300"}} gutterBottom>
+                    <Typography className={classes.title} gutterBottom>
                     {provider[0].name}
                     </Typography>
                     <Typography variant="h5" component="h2">

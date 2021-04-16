@@ -4,13 +4,26 @@ import styled from 'styled-components';
 import { AiOutlineArrowUp } from "react-icons/ai"
 const StyledTickerContainer = styled.div`
     display: flex;
-    align-items: baseline;
-    font-size: 2rem;
-    padding-top: 3rem;
-    padding-left: 5rem;
+    justify-content: flex-start;
+    align-items: center;
     min-height: 8vh;
-    background-color: #000000;
+    font-size: 2rem;
+    /* padding-top: 3rem; */
+    padding-left: 5rem;
+    /* background-color: #14213d; */
+
     color: #a3eada;
+    .ticker-card {
+        color: black;
+        padding: 2rem;
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    }
     #ticker-symbol {
         
     }
@@ -19,16 +32,19 @@ const StyledTickerContainer = styled.div`
         color: green;
     }
     #price {
-        color: #a3eada;
+        color: black;
     }
 
 `
 
 export const TickerBox = (props) => {
+    const { coin } = props;
     return (
         <StyledTickerContainer>
-            <div id="ticker-symbol">BTC:<AiOutlineArrowUp id="icon"/></div>
-            <div id="price"><p>$57,000.00</p></div>
+            <div className="ticker-card">
+                <div id="ticker-symbol">{coin.symbol}:<AiOutlineArrowUp id="icon"/></div>
+                <div id="price"><p>${coin.price}</p></div>
+            </div>
         </StyledTickerContainer>
     )
 }
