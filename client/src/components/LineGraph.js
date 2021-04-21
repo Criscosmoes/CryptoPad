@@ -95,7 +95,7 @@ const LineGraph = ({nameOfCoin, coinId}) => {
 
   return (
     <StyledLineGraph>
-      <h2 className="coin--name">{nameOfCoin} 56,431,00</h2>
+      <h2 className="coin--name">{nameOfCoin}</h2>
       <Line 
         data={{
           labels: timeList,
@@ -140,3 +140,6 @@ const LineGraph = ({nameOfCoin, coinId}) => {
 };
 
 export default LineGraph;
+
+
+//test push 
