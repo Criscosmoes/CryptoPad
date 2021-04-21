@@ -142,4 +142,4 @@ const LineGraph = ({nameOfCoin, coinId}) => {
 export default LineGraph;
 
 
-//test push 
+// this is a test push
