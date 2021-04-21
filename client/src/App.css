@@ -2,10 +2,10 @@
 v2.0 | 20110126
 License: none (public domain)
 */
-
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -34,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    background-color: #a3eada;
 }
 ol, ul {
     list-style: none;
@@ -56,6 +57,7 @@ img {
 a {
     text-decoration: none;
     color: rgb( 27, 24, 24);
+    color: #a3eada;
 }
 * {
     box-sizing: border-box;
